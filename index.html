@@ -25,6 +25,34 @@
             min-height: 100vh;
             color: #fff;
             text-align: center;
+            transition: background 0.5s;
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #f8fafc, #e0e7ff);
+            color: #222;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s;
+            z-index: 2000;
+        }
+
+        .theme-toggle svg {
+            width: 22px;
+            height: 22px;
         }
 
         .container {
@@ -36,10 +64,11 @@
             width: 100%;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: box-shadow 0.3s ease;
+            position: relative;
         }
 
-        .container:hover {
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+        .profile-banner {
+            display: none !important;
         }
 
         .profile-img {
@@ -50,16 +79,14 @@
             object-fit: cover;
             margin: 0 auto 1.5rem;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-            transition: transform 0.3s ease;
-        }
-
-        .profile-img:hover {
-            transform: scale(1.05);
+            position: relative;
+            z-index: 2;
+            background: #fff;
         }
 
         h1.username {
             font-size: 2.2rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
             font-weight: 600;
             letter-spacing: 0.05em;
             cursor: pointer;
@@ -69,11 +96,14 @@
             transition: color 0.3s ease;
         }
 
-        h1.username:hover {
+        .bio {
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
             color: #ffd369;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
         }
 
-        /* Social media icons row */
         .social-icons {
             display: flex;
             justify-content: center;
@@ -103,28 +133,6 @@
             display: block;
         }
 
-        .social-icons a:hover {
-            color: #ffd369;
-            background: none;
-            transform: none;
-            box-shadow: none;
-        }
-
-        /* Remove hover effect on mobile */
-        @media (max-width: 480px) {
-            .social-icons {
-                gap: 12px;
-            }
-
-            .social-icons a:hover {
-                color: #fff;
-                background: none;
-                transform: none;
-                box-shadow: none;
-            }
-        }
-
-        /* Links container */
         .links-container {
             display: flex;
             flex-direction: column;
@@ -139,15 +147,29 @@
             border-radius: 12px;
             text-decoration: none;
             box-shadow: 0 4px 12px rgba(255, 154, 158, 0.6);
-            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
             user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 0.7em;
+            justify-content: center;
+            position: relative;
         }
 
-        a.link-btn:hover {
-            background: linear-gradient(135deg, #fad0c4, #ff9a9e);
+        .link-btn .copy-link {
+            background: none;
+            border: none;
+            color: #3a0ca3;
+            margin-left: 0.3em;
+            cursor: pointer;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            padding: 0;
+        }
+
+        .link-btn .copy-link:active {
             color: #610094;
-            transform: scale(1.05);
-            box-shadow: 0 6px 16px rgba(255, 154, 158, 0.9);
         }
 
         .copy-tooltip {
@@ -170,6 +192,16 @@
         .copy-tooltip.show {
             opacity: 1;
             pointer-events: auto;
+        }
+
+        .qr-btn {
+            background: none;
+            border: none;
+            color: #ffd369;
+            font-size: 1.3em;
+            margin-left: 0.5em;
+            cursor: pointer;
+            vertical-align: middle;
         }
 
         /* Modal styles */
@@ -233,6 +265,105 @@
             color: #fff;
         }
 
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7em;
+            margin-top: 1em;
+        }
+
+        .newsletter-form input[type="email"] {
+            padding: 0.6em;
+            border-radius: 6px;
+            border: none;
+            font-size: 1em;
+        }
+
+        .newsletter-form button {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #3a0ca3;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            padding: 0.6em 1em;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.13);
+            border-radius: 10px;
+            padding: 0.8em 1em;
+            margin: 1.2em 0 0.5em 0;
+            font-style: italic;
+            color: #fff;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        .latest-posts {
+            margin: 1.2em 0 1.2em 0;
+            text-align: left;
+        }
+
+        .latest-posts h3 {
+            font-size: 1.1em;
+            margin-bottom: 0.3em;
+            color: #ffd369;
+        }
+
+        .latest-posts ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .latest-posts li {
+            margin-bottom: 0.2em;
+        }
+
+        .latest-posts a {
+            color: #ffd369;
+            text-decoration: underline;
+            font-size: 0.98em;
+        }
+
+        /* QR Button styles */
+        .styled-qr-btn {
+            background: rgba(255, 255, 255, 0.13);
+            color: #3a0ca3;
+            border: 1.5px solid rgba(255, 211, 105, 0.25);
+            border-radius: 18px;
+            padding: 0.65em 1.3em 0.65em 1em;
+            font-size: 1.08em;
+            font-weight: 600;
+            box-shadow: 0 4px 18px 0 rgba(58, 12, 163, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 0.7em;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+            backdrop-filter: blur(8px);
+            transition: none;
+        }
+
+        .qr-icon-bg {
+            background: rgba(255, 211, 105, 0.13);
+            border-radius: 50%;
+            padding: 0.32em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: none;
+        }
+
+        .styled-qr-btn span:last-child {
+            color: #3a0ca3;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+
         /* Responsive */
         @media (max-width: 480px) {
             .container {
@@ -254,13 +385,6 @@
                 padding: 0.75rem 1rem;
             }
         }
-
-        body.no-hover .social-icons a:hover {
-            color: inherit !important;
-            background: none !important;
-            transform: none !important;
-            box-shadow: none !important;
-        }
     </style>
 </head>
 
@@ -268,74 +392,77 @@
     <div class="container">
         <img src="https://avatars.githubusercontent.com/u/73417763?v=4" alt="Profile Image" class="profile-img" />
         <h1 class="username" id="username" title="Click to copy username">@bijanmurmu</h1>
+        <div class="bio">Building cool things on the web 🚀</div>
 
         <!-- Social media icons -->
         <div class="social-icons" aria-label="Social media links">
             <a href="https://github.com/bijanmurmu" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-github-icon lucide-github">
-                    <path
-                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                    <path d="M9 18c-4.51 2-5-2-7-2" />
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github-icon lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
             </a>
-            <a href="https://linkedin.com/in/bijanmurmu" target="_blank" rel="noopener noreferrer"
-                aria-label="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-linkedin-icon lucide-linkedin">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                    <rect width="4" height="12" x="2" y="9" />
-                    <circle cx="4" cy="4" r="2" />
-                </svg>
+            <a href="https://linkedin.com/in/bijanmurmu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin-icon lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
             <a href="https://twitter.com/bijanmurmuXO" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-twitter-icon lucide-twitter">
-                    <path
-                        d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter-icon lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
             </a>
             <a href="https://instagram.com/bijanmurmu" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-instagram-icon lucide-instagram">
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram-icon lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             </a>
             <a href="https://facebook.com/bijanmurmuXO" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-facebook-icon lucide-facebook">
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook-icon lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             </a>
-            <a href="https://discord.com/invite/pNA7778" target="_blank" rel="noopener noreferrer"
-                aria-label="Discord"> 
-                <!-- It will be changed later -->
-                <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
-                    <path
-                        d="M7 4c-1 2-1.5 4.5-1.5 7s.5 5 1.5 7c.5 1 2 .5 2-.5v-.5a12.5 12.5 0 0 0 6 0v.5c0 1 1.5 1.5 2 .5 1-2 1.5-4.5 1.5-7S17 6 16 4a1 1 0 0 0-1.2-.5l-.8.3a12.5 12.5 0 0 0-4 0l-.8-.3A1 1 0 0 0 7 4z" />
-                    <circle cx="9" cy="10" r="1" />
-                    <circle cx="15" cy="10" r="1" />
-                </svg>
+            <a href="https://discord.com/invite/pNA7778" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4c-1 2-1.5 4.5-1.5 7s.5 5 1.5 7c.5 1 2 .5 2-.5v-.5a12.5 12.5 0 0 0 6 0v.5c0 1 1.5 1.5 2 .5 1-2 1.5-4.5 1.5-7S17 6 16 4a1 1 0 0 0-1.2-.5l-.8.3a12.5 12.5 0 0 0-4 0l-.8-.3A1 1 0 0 0 7 4z"/><circle cx="9" cy="10" r="1"/><circle cx="15" cy="10" r="1"/></svg>
             </a>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="testimonial">
+            “It’s not about ideas. It’s about making ideas happen.”<br>
+            <span style="font-size:0.95em;color:#ffd369;">— Scott Belsky</span>
+        </div>
+
+        <!-- Latest posts (static example, can be dynamic) -->
+        <div class="latest-posts">
+            <h3>Latest Blog Posts</h3>
+            <ul>
+                <li><a href="https://medium.com/@bijanmurmu/how-i-built-my-own-custom-link-tree-9d09429eef65" target="_blank">How I Built My Link Tree</a></li>
+                <!-- <li><a href="https://blog.bijanmurmu.com/post2" target="_blank">Top 5 VS Code Extensions</a></li> -->
+            </ul>
         </div>
 
         <!-- Link buttons -->
         <div class="links-container">
-            <a href="https://bijanmurmu.vercel.app" class="link-btn" target="_blank" rel="noopener noreferrer">Portfolio</a>
-            <a href="https://blog.bijanmurmu.com" class="link-btn" target="_blank" rel="noopener noreferrer">Blog</a>
-            <!-- Playlist Embed button triggers modal -->
-            <a href="#" id="playlistBtn" class="link-btn" role="button" aria-haspopup="dialog">Playlist</a>
+            <a href="https://bijanmurmu.vercel.app" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <!-- Lucide: Globe -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe-icon lucide-globe"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                Portfolio
+            </a>
+            <a href="https://medium.com/@bijanmurmu" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <!-- Lucide: Book -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notebook-pen-icon lucide-notebook-pen"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg>
+                Blog
+            </a>
+            <a href="#" id="playlistBtn" class="link-btn" role="button" aria-haspopup="dialog">
+                <!-- Lucide: Music -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music-icon lucide-music"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                Playlist
+            </a>
+            <a href="#" id="contactBtn" class="link-btn" role="button" aria-haspopup="dialog">
+                <!-- Lucide: Mail -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-warning-icon lucide-mail-warning"><path d="M22 10.5V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h12.5"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/><path d="M20 14v4"/><path d="M20 22v.01"/></svg>
+                Contact
+            </a>
+        </div>
 
-            <!-- Contact button triggers modal -->
-            <a href="#" id="contactBtn" class="link-btn" role="button" aria-haspopup="dialog">Contact</a>
+        <!-- QR Button at the bottom -->
+        <div style="margin-top:2.5rem;display:flex;justify-content:center;">
+            <button class="qr-btn styled-qr-btn" id="qrBtn" title="Show QR code for this page" aria-label="Show QR">
+                <span class="qr-icon-bg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-qr-code-icon lucide-qr-code"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
+                </span>
+                <span style="margin-left:0.7em;font-size:1em;">Show QR</span>
+            </button>
         </div>
     </div>
 
@@ -349,8 +476,9 @@
             <button class="close-btn" aria-label="Close playlist modal">&times;</button>
             <h2 id="playlistTitle">My Spotify Playlist</h2>
             <!-- Playlist to be added here -->
-            <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M" width="100%" height="380"
-                frameborder="0" allowtransparency="true" allow="encrypted-media" title="Spotify Playlist"></iframe>
+            <iframe src="https://open.spotify.com/embed/playlist/08Pu74Trmd6I1QyZaZuOGc?utm_source=generator"
+                width="100%" height="380" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                allowtransparency="true" title="Spotify Playlist"></iframe>
         </div>
     </div>
 
@@ -367,6 +495,17 @@
         </div>
     </div>
 
+    <!-- Modal for QR code -->
+    <div class="modal-overlay" id="qrModal" role="dialog" aria-modal="true" aria-labelledby="qrTitle" tabindex="-1">
+        <div class="modal" style="text-align:center;">
+            <button class="close-btn" aria-label="Close QR modal">&times;</button>
+            <h2 id="qrTitle">Scan to visit this page</h2>
+            <canvas id="qrCanvas" width="220" height="220" style="margin:1em auto;display:block;"></canvas>
+            <div style="font-size:0.95em;color:#ffd369;">Share this QR with friends!</div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
     <script>
         // Username copy-to-clipboard with tooltip feedback
         const usernameEl = document.getElementById('username');
@@ -375,6 +514,7 @@
         usernameEl.addEventListener('click', () => {
             const usernameText = usernameEl.textContent.trim();
             navigator.clipboard.writeText(usernameText).then(() => {
+                tooltip.textContent = "Username copied!";
                 tooltip.classList.add('show');
                 setTimeout(() => {
                     tooltip.classList.remove('show');
@@ -382,24 +522,56 @@
             });
         });
 
-        // Modal open/close logic for Playlist and Contact
+        // Copy link buttons for each link
+        document.querySelectorAll('.copy-link').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.stopPropagation();
+                const link = btn.getAttribute('data-link');
+                navigator.clipboard.writeText(link).then(() => {
+                    tooltip.textContent = "Link copied!";
+                    tooltip.classList.add('show');
+                    setTimeout(() => {
+                        tooltip.classList.remove('show');
+                    }, 1500);
+                });
+            });
+        });
+
+        // Modal open/close logic for Playlist, Contact, QR
         const playlistBtn = document.getElementById('playlistBtn');
         const contactBtn = document.getElementById('contactBtn');
         const playlistModal = document.getElementById('playlistModal');
         const contactModal = document.getElementById('contactModal');
+        const qrBtn = document.getElementById('qrBtn');
+        const qrModal = document.getElementById('qrModal');
+        const qrCanvas = document.getElementById('qrCanvas');
 
-        // Show Playlist modal when button is clicked
         playlistBtn.addEventListener('click', e => {
             e.preventDefault();
             playlistModal.classList.add('active');
             playlistModal.focus();
         });
 
-        // Show Contact modal when button is clicked
         contactBtn.addEventListener('click', e => {
             e.preventDefault();
             contactModal.classList.add('active');
             contactModal.focus();
+        });
+
+        qrBtn.addEventListener('click', e => {
+            e.preventDefault();
+            qrModal.classList.add('active');
+            // Generate QR code for the custom link
+            if (window.QRious) {
+                new QRious({
+                    element: qrCanvas,
+                    value: 'https://bijanmurmu.github.io/link-tree/',
+                    size: 220,
+                    background: 'white',
+                    foreground: '#3a0ca3'
+                });
+            }
+            qrModal.focus();
         });
 
         // Close modal when close button is clicked
@@ -410,7 +582,7 @@
         });
 
         // Close modal if user clicks outside the modal content
-        [playlistModal, contactModal].forEach(modal => {
+        [playlistModal, contactModal, qrModal].forEach(modal => {
             modal.addEventListener('click', e => {
                 if (e.target === modal) {
                     modal.classList.remove('active');
@@ -421,10 +593,49 @@
         // Allow closing modals with the Escape key
         window.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
-                [playlistModal, contactModal].forEach(modal => {
+                [playlistModal, contactModal, qrModal].forEach(modal => {
                     modal.classList.remove('active');
                 });
             }
+        });
+
+        // Newsletter form (demo, no backend)
+        const newsletterForm = document.getElementById('newsletterForm');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const email = newsletterForm.newsletterEmail.value.trim();
+                const msg = document.getElementById('newsletterMsg');
+                if (email && email.includes('@')) {
+                    msg.textContent = "Thank you for subscribing!";
+                    msg.style.color = "#ffd369";
+                    newsletterForm.reset();
+                } else {
+                    msg.textContent = "Please enter a valid email.";
+                    msg.style.color = "#ff9a9e";
+                }
+            });
+        }
+
+        // Theme toggle (dark/light)
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        function setTheme(light) {
+            if (light) {
+                document.body.classList.add('light-mode');
+                themeIcon.innerHTML = `<circle cx="12" cy="12" r="5"/><path d="M2 12h2m16 0h2m-9 9v2m0-20v2m7.07 7.07l1.42-1.42m-14.14 0l1.42 1.42m12.02 7.07l-1.42 1.42m-9.9-1.42l-1.42 1.42"/>`;
+            } else {
+                document.body.classList.remove('light-mode');
+                themeIcon.innerHTML = `<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>`;
+            }
+        }
+        // Persist theme
+        let isLight = localStorage.getItem('theme') === 'light';
+        setTheme(isLight);
+        themeToggle.addEventListener('click', () => {
+            isLight = !isLight;
+            setTheme(isLight);
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
         });
 
         // On first touch, disable hover effects for touch devices
