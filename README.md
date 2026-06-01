@@ -10,5 +10,5 @@ It acts as a personal landing page to showcase your profile, social media links,
 - Mobile-friendly and accessible
 
 **How to use:**
-- Open `link-tree.html` in your browser.
+- Open `index.html` in your browser.
 - Click any link or button to visit or interact with the content.
